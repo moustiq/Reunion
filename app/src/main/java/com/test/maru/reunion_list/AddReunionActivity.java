@@ -1,9 +1,11 @@
-package com.test.maru;
+package com.test.maru.reunion_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.EditText;
+
+import com.test.maru.R;
 
 import butterknife.BindView;
 

@@ -1,6 +1,7 @@
-package com.test.maru;
+package com.test.maru.api;
 
-import java.lang.reflect.Array;
+import com.test.maru.model.Reunion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

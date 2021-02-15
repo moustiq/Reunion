@@ -1,4 +1,4 @@
-package com.test.maru;
+package com.test.maru.model;
 
 public class Reunion {
 

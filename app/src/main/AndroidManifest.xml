@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Maréu">
-        <activity android:name=".AddReunionActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".reunion_list.AddReunionActivity"></activity>
+        <activity android:name=".reunion_list.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
