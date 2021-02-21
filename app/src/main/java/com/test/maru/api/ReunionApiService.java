@@ -4,21 +4,12 @@ import com.test.maru.model.Reunion;
 
 import java.util.List;
 
-public class ReunionApiService {
+public interface ReunionApiService {
 
-    private List<Reunion> mReunions = ReunionList.generateReunion();
+    List<Reunion> getReunions();
 
-    public List<Reunion> getReunions() {
-        return mReunions;
-    }
+    void deleteReunion(Reunion reunion);
 
-    public void deleteReunion(Reunion reunion) {
-        mReunions.remove(reunion);
-    }
+    void createReunion(Reunion reunion);
 
-    public void createReunion(Reunion reunion) {
-        mReunions.add(reunion);
-    }
-
-        
 }
