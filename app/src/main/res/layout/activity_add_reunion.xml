@@ -17,28 +17,35 @@
             android:id="@+id/heure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:hint="heure"
+            android:inputType="datetime">
 
         </EditText>
         <EditText
             android:id="@+id/lieu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:hint="lieu"
+            android:inputType="text">
 
         </EditText>
         <EditText
             android:id="@+id/sujet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:hint="sujet">
 
         </EditText>
         <EditText
             android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:hint="mail"
+            android:inputType="textEmailAddress">
 
         </EditText>
 

@@ -2,12 +2,12 @@ package com.test.maru.model;
 
 public class Reunion {
 
-    private int heure;
+    private String heure;
     private String lieu;
     private String sujet;
     private String mails;
 
-    public Reunion(int heure, String lieu, String sujet, String mails) {
+    public Reunion(String heure, String lieu, String sujet, String mails) {
         this.heure = heure;
         this.lieu = lieu;
         this.sujet = sujet;
@@ -15,11 +15,11 @@ public class Reunion {
     }
 
 
-    public int getHeure() {
+    public String getHeure() {
         return heure;
     }
 
-    public void setHeure(int heure) {
+    public void setHeure(String heure) {
         this.heure = heure;
     }
 
