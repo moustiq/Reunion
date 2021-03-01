@@ -9,7 +9,7 @@ import java.util.List;
 public class ReunionList {
 
     public static List<Reunion> REUNION = Arrays.asList(
-
+            new Reunion("15:20", "Paris", "OC", "corentin@gmail.com")
     );
 
     public static List<Reunion> generateReunion() {
