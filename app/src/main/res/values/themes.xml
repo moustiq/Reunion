@@ -16,7 +16,7 @@
     </style>
 
     <style name="AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:background">@color/teal_200</item>
+        <item name="android:background">@android:color/holo_purple</item>
 
     </style>
 </resources>

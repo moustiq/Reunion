@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity  {
     private FragmentManager fragmentManager;
     private ReuFragment fragmentReunion;
 
+    private TextView nameToolbar;
     private ImageView searchIcon;
     private TextInputEditText mTextInputEditText;
     private TextInputLayout mTextInputLayout;
@@ -30,16 +32,18 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        nameToolbar = findViewById(R.id.toolbar_name);
         searchIcon = findViewById(R.id.toolbar_recherche);
         mTextInputEditText = findViewById(R.id.search_edit);
         mTextInputLayout = findViewById(R.id.search_layout);
+
+        nameToolbar.setText("Réunion");
 
         fragmentManager = getSupportFragmentManager();
 
         fragmentReunion = new ReuFragment();
 
         changeFragment(fragmentReunion, fragmentReunion.TAG);
-
 
         setListner();
 
@@ -52,7 +56,10 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 if (mTextInputLayout.getVisibility() == View.INVISIBLE) {
                     mTextInputLayout.setVisibility(View.VISIBLE);
-                    return;
+                    //return;
+
+                } else if (mTextInputLayout.getVisibility() == View.VISIBLE) {
+                    mTextInputLayout.setVisibility(View.INVISIBLE);
                 }
 
                 fragmentReunion.search(mTextInputEditText.getText().toString());

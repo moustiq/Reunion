@@ -99,9 +99,6 @@ public class ReuFragment extends Fragment {
 
         for (Reunion r : mReunions) {
 
-            Log.d(TAG, "search: LIEU" + r.getLieu() + "|" + r.getLieu().contains(filter));
-            Log.d(TAG, "search: HEURE " + r.getHeure() + "|" + r.getHeure().contains(filter));
-
             if(r.getHeure().contains(filter)) {
                 listReunion.add(r);
                 continue;
@@ -109,6 +106,7 @@ public class ReuFragment extends Fragment {
 
             if(r.getLieu().contains(filter)) {
                 listReunion.add(r);
+                continue;
             }
 
         }

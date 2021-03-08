@@ -2,6 +2,7 @@ package com.test.maru.reunion_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.maru.R;
@@ -29,6 +32,12 @@ public class AddReunionActivity extends AppCompatActivity {
     private EditText sujetEdit;
     private EditText mailEdit;
 
+    private TextView nameToolbar;
+    private ImageView searchIcon;
+    private ImageView arrowBack;
+
+    private Button creerReunion;
+
     private ReunionApiService mReunionApiService;
 
     @Override
@@ -37,13 +46,22 @@ public class AddReunionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_reunion);
         mReunionApiService = DI.getReunionApiService();
 
+        nameToolbar = findViewById(R.id.toolbar_name);
+        arrowBack = findViewById(R.id.toolbar_back);
+
+        nameToolbar.setText("Add réunion");
+        arrowBack.setVisibility(View.VISIBLE);
+
         heureEdit = (EditText) findViewById(R.id.heure);
         lieuEdit = (EditText) findViewById(R.id.lieu);
         sujetEdit = (EditText) findViewById(R.id.sujet);
         mailEdit = (EditText) findViewById(R.id.mail);
 
+        searchIcon = findViewById(R.id.toolbar_recherche);
 
-        Button creerReunion = findViewById(R.id.creer);
+        searchIcon.setVisibility(View.GONE);
+
+        creerReunion = findViewById(R.id.creer);
 
         creerReunion.setEnabled(false);
 
@@ -64,6 +82,13 @@ public class AddReunionActivity extends AppCompatActivity {
             }
         });
 
+        setCreerReunion ();
+
+        setArrowBack();
+
+    }
+
+    public void setCreerReunion () {
         creerReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +97,16 @@ public class AddReunionActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    public void setArrowBack() {
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddReunionActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void addReunion() {
