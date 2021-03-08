@@ -1,41 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:ignore="NamespaceTypo">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/item_avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        tools:ignore="MissingConstraints" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/reu_recycler"/>
 
-    <TextView
-        android:id="@+id/item_list_name"
-        android:layout_width="10dp"
-        android:layout_height="17dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="17dp"
-        android:hint="items"/>
-
-    <ImageButton
-        android:id="@+id/item_list_delete"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/item_list_name"
-        app:srcCompat="@drawable/ic_delete_white_24dp"
-        tools:ignore="MissingConstraints,VectorDrawableCompat"
-        tools:layout_editor_absoluteX="371dp">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:id="@+id/floating_button" />
 
-    </ImageButton>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

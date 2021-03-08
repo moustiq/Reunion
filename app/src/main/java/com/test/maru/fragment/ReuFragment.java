@@ -1,90 +1,118 @@
 package com.test.maru.fragment;
 
-import android.content.Context;
+
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.test.maru.R;
 import com.test.maru.api.ReunionApiService;
 import com.test.maru.di.DI;
 import com.test.maru.model.Reunion;
+import com.test.maru.reunion_list.AddReunionActivity;
 import com.test.maru.reunion_list.ReunionRecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ReuFragment extends Fragment {
 
+    public static final String TAG = "REUNION_LIST";
     private ReunionApiService mReunionApiService;
     private List<Reunion> mReunions;
     private RecyclerView mRecyclerView;
+    private FloatingActionButton floatingButton;
 
 
     public ReuFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ReuFragment newInstance() {
-        ReuFragment fragment = new ReuFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReunionApiService = DI.getReunionApiService();
+        refresh();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.reunion_list,container);
-        Context context = view.getContext();
-        mRecyclerView = (RecyclerView) view;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        View view = inflater.inflate(R.layout.fragment_reu, container, false);
+
+        Log.d("HERE", "onCreateView: start create");
+
+        mRecyclerView = view.findViewById(R.id.reu_recycler);
+        floatingButton = view.findViewById(R.id.floating_button);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()),DividerItemDecoration.VERTICAL));
+        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
+
+        setListner();
+
+
+        Log.d("HERE", "onCreateView: return view");
         return view;
     }
-    private void initList() {
+
+    private void setListner() {
+
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddReunionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        refresh();
+    }
+
+    public void refresh() {
         mReunions = mReunionApiService.getReunions();
-        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(mReunions));
+        Log.d("REFRESH", "refresh: am i visible ? " + isVisible());
+        // assert
+        if (isVisible()) mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initList();
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+    public void search(String filter) {
 
-    @Override
-    public void onStop() {
-        super.onStop();
+        ArrayList<Reunion> listReunion = new ArrayList<>();
+
+        for (Reunion r : mReunions) {
+
+            Log.d(TAG, "search: LIEU" + r.getLieu() + "|" + r.getLieu().contains(filter));
+            Log.d(TAG, "search: HEURE " + r.getHeure() + "|" + r.getHeure().contains(filter));
+
+            if(r.getHeure().contains(filter)) {
+                listReunion.add(r);
+                continue;
+            }
+
+            if(r.getLieu().contains(filter)) {
+                listReunion.add(r);
+            }
+
+        }
+        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), listReunion));
+
     }
 }

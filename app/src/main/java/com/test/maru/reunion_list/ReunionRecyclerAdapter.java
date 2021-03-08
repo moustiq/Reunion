@@ -1,6 +1,7 @@
 package com.test.maru.reunion_list;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,25 +23,24 @@ import butterknife.ButterKnife;
 public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecyclerAdapter.ViewHolder> {
 
     private final List<Reunion> mReunions;
+    private final LayoutInflater mInflater;
 
-    public ReunionRecyclerAdapter(List<Reunion> reunions) {
+    public ReunionRecyclerAdapter(Context context, List<Reunion> reunions) {
         mReunions = reunions;
+        mInflater = LayoutInflater.from(context);
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_reu,parent);
+        View view = mInflater.inflate(R.layout.row_reu, parent, false);
+
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Reunion reunion = mReunions.get(position);
-        holder.mTextViewName.setText(reunion.getSujet());
-
+        holder.bind(mReunions.get(position));
     }
-
 
     @Override
     public int getItemCount() {
@@ -49,18 +49,20 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.item_avatar)
-        public ImageView mImageViewAvatar;
-
-        @BindView(R.id.item_list_name)
-        public TextView mTextViewName;
-
-        @BindView(R.id.item_list_delete)
-        public ImageButton mImageButtonDelete;
+        public ImageView avatar;
+        public TextView sujet;
+        public ImageView deleteIcon;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            //ButterKnife.bind(this,itemView);
+            sujet = itemView.findViewById(R.id.reunion_sujet);
+            avatar = itemView.findViewById(R.id.reunion_avatar);
+            deleteIcon = itemView.findViewById(R.id.reunion_delete);
+        }
+
+        void bind(Reunion r) {
+            sujet.setText(r.getSujet() + " - " + r.getHeure() + " - " + r.getLieu());
         }
     }
 }
