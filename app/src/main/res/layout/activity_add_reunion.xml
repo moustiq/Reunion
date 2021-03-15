@@ -8,12 +8,13 @@
 
 
     <LinearLayout
+        android:id="@+id/layout_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
-        <include layout="@layout/tool_bar"/>
+        <include layout="@layout/tool_bar" />
 
         <EditText
             android:id="@+id/heure"
@@ -21,7 +22,8 @@
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:hint="heure"
-            android:inputType="datetime">
+            android:inputType="datetime"
+            android:layout_column="0">
 
         </EditText>
         <EditText
@@ -30,7 +32,8 @@
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:hint="lieu"
-            android:inputType="text">
+            android:inputType="text"
+            android:layout_column="0">
 
         </EditText>
         <EditText
@@ -38,27 +41,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:hint="sujet">
+            android:hint="sujet"
+            android:layout_column="0">
 
         </EditText>
-        <EditText
-            android:id="@+id/mail"
+
+        <LinearLayout
+            android:id="@+id/layout_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:hint="mail"
-            android:inputType="textEmailAddress">
+            android:columnCount="2"
+            android:orientation="vertical">
 
-        </EditText>
+            <EditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:hint="mail"
+                android:inputType="textEmailAddress"
+                android:layout_weight="1">
 
+            </EditText>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_add_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_weight="1"
+            android:text="add mail">
+
+        </Button>
         <Button
             android:id="@+id/creer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save">
+            android:layout_height="match_parent"
+            android:text="save">
 
         </Button>
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,12 +15,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.test.maru.R;
 import com.test.maru.fragment.ReuFragment;
+import com.test.maru.utils.Utils;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private ReuFragment fragmentReunion;
+
+    private Utils mUtils;
 
     private TextView nameToolbar;
     private ImageView searchIcon;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
 
                 fragmentReunion.search(mTextInputEditText.getText().toString());
+
             }
         });
 

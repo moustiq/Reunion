@@ -18,7 +18,7 @@ public class ReunionList {
     );
 
     public static List<Reunion> generateReunion() {
-        return REUNION;
+        return new ArrayList<>(REUNION);
     }
 
 }

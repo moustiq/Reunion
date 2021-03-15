@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +34,6 @@ public class ReuFragment extends Fragment {
     private List<Reunion> mReunions;
     private RecyclerView mRecyclerView;
     private FloatingActionButton floatingButton;
-
 
     public ReuFragment() {
         // Required empty public constructor
@@ -62,7 +62,6 @@ public class ReuFragment extends Fragment {
 
         setListner();
 
-
         Log.d("HERE", "onCreateView: return view");
         return view;
     }
@@ -78,6 +77,7 @@ public class ReuFragment extends Fragment {
         });
 
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

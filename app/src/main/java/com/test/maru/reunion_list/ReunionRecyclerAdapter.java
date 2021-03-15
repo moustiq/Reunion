@@ -2,6 +2,7 @@ package com.test.maru.reunion_list;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.maru.R;
+import com.test.maru.api.ReunionApiService;
 import com.test.maru.model.Reunion;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
 
     private final List<Reunion> mReunions;
     private final LayoutInflater mInflater;
+    public ReunionApiService mReunionApiService;
 
     public ReunionRecyclerAdapter(Context context, List<Reunion> reunions) {
         mReunions = reunions;
@@ -40,6 +43,17 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.bind(mReunions.get(position));
+
+        holder.deleteIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mReunions.remove(position);
+                holder.bind(mReunions.get(position));
+
+                Log.d("DELETE REUNION", "onClick: delete" + position);
+            }
+        });
     }
 
     @Override
@@ -51,18 +65,22 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
 
         public ImageView avatar;
         public TextView sujet;
+        public TextView mail;
         public ImageView deleteIcon;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             //ButterKnife.bind(this,itemView);
             sujet = itemView.findViewById(R.id.reunion_sujet);
+            mail = itemView.findViewById(R.id.reunion_mail);
             avatar = itemView.findViewById(R.id.reunion_avatar);
             deleteIcon = itemView.findViewById(R.id.reunion_delete);
         }
 
         void bind(Reunion r) {
             sujet.setText(r.getSujet() + " - " + r.getHeure() + " - " + r.getLieu());
+            mail.setText(r.getMails());
         }
     }
 }
