@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +33,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class AddReunionActivity extends AppCompatActivity {
 
+    private Spinner spinnerAvatar;
     private EditText heureEdit;
-    private  EditText lieuEdit;
+    private EditText lieuEdit;
     private EditText sujetEdit;
     private EditText mailEdit;
 
@@ -66,6 +68,7 @@ public class AddReunionActivity extends AppCompatActivity {
         nameToolbar.setText("Add réunion");
         arrowBack.setVisibility(View.VISIBLE);
 
+        spinnerAvatar = (Spinner) findViewById(R.id.spinner_color);
         heureEdit = (EditText) findViewById(R.id.heure);
         lieuEdit = (EditText) findViewById(R.id.lieu);
         sujetEdit = (EditText) findViewById(R.id.sujet);

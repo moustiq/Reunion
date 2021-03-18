@@ -5,4 +5,15 @@
     <string name="cd_remove_reunion">remove reunion</string>
     <string name="cd_reunion_avatar">reunion avatar</string>
     <string name="recherche">recherche</string>
+
+    <string-array
+        name="couleur_array">
+        <item>red</item>
+        <item>blue</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>orange</item>
+        <item>black</item>
+
+    </string-array>
 </resources>
