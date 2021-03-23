@@ -44,6 +44,7 @@ public class ReuFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReunionApiService = DI.getReunionApiService();
+        // TODO ne pas appeler `refresh` ici mais que dans `onCreateView`
         refresh();
     }
 
@@ -58,6 +59,7 @@ public class ReuFragment extends Fragment {
         floatingButton = view.findViewById(R.id.floating_button);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()),DividerItemDecoration.VERTICAL));
+        // TODO: remplacer ` mRecyclerView.setAdapter(...)` par `refresh()`
         mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
 
         setListner();
@@ -85,10 +87,12 @@ public class ReuFragment extends Fragment {
         refresh();
     }
 
+    // TODO: devrait etre private
     public void refresh() {
         mReunions = mReunionApiService.getReunions();
         Log.d("REFRESH", "refresh: am i visible ? " + isVisible());
         // assert
+        // TODO pas besoin de `if (isVisible())`
         if (isVisible()) mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
     }
 
@@ -110,6 +114,10 @@ public class ReuFragment extends Fragment {
             }
 
         }
+        // TODO: ne pas re-setter l'adapter
+        // tu devrait aoir une variable de class `private ReunionRecyclerAdapter adapater`
+        // et ajouter une methode public dans ReunionRecyclerAdapter `updateMeetings`
+        // pour modifier la liste que contient l'adapter quand cela est necessaire
         mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), listReunion));
 
     }

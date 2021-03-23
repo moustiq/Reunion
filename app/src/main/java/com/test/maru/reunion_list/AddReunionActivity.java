@@ -31,6 +31,9 @@ import butterknife.OnClick;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+// TODO devrait avoir son propre package.
+// TODO peut etre ajouter des validateur pour verifier que les valeurs entrées sont correct (une vraie heure, un vrai email etc...)
+// TODO: attention beaucoup de methode devrait etre private
 public class AddReunionActivity extends AppCompatActivity {
 
     private Spinner spinnerAvatar;
@@ -65,6 +68,9 @@ public class AddReunionActivity extends AppCompatActivity {
         nameToolbar = findViewById(R.id.toolbar_name);
         arrowBack = findViewById(R.id.toolbar_back);
 
+        // TODO: Le nom afficher dans la toolbar se fait automatiquement si tu ajoute un label a l'activity dans le manifest
+        // <activity android:name=".reunion_list.AddReunionActivity"
+        //            android:label="Add réunion"/>
         nameToolbar.setText("Add réunion");
         arrowBack.setVisibility(View.VISIBLE);
 
@@ -120,6 +126,7 @@ public class AddReunionActivity extends AppCompatActivity {
         });
     }
 
+    // Pas besoin de refaire le arrow back toi meme: https://stackoverflow.com/a/54270429
     public void setArrowBack() {
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +138,7 @@ public class AddReunionActivity extends AppCompatActivity {
         });
     }
 
+    // TODO rename to addEmail
     public void addMail() {
 
         addEmail.setOnClickListener(new View.OnClickListener() {

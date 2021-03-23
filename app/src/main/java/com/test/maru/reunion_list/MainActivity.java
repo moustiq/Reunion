@@ -18,6 +18,7 @@ import com.test.maru.fragment.ReuFragment;
 import com.test.maru.utils.Utils;
 
 
+// TODO: attention night theme rend l'app non-lisible. Change les couleur dans res/values/themes (night one)
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO: tu peux utiliser ButterKnife ou meiux encore viewBinding: https://developer.android.com/topic/libraries/view-binding#java
         nameToolbar = findViewById(R.id.toolbar_name);
         searchIcon = findViewById(R.id.toolbar_recherche);
         mTextInputEditText = findViewById(R.id.search_edit);
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // TODO Android peut gerer ca automatiquement: https://developer.android.com/training/search/setup#java https://www.javatpoint.com/android-searchview-on-toolbar
     private void setListner() {
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // TODO: plus simple. dans le XML de ton activity tu peux remplacer ton FrameLayout par
+    //  <fragment
+    //            android:name="com.example.android.FooFragment"
+    //           android:id="@+id/fooFragment"
+    //           android:layout_width="match_parent"
+    //           android:layout_height="match_parent" />
+    // ou voir FragmentContainerView https://developer.android.com/guide/fragments/create
     private void changeFragment(Fragment fragment, String tag) {
         // commencer a definir une 'changement', une 'transaction'
         FragmentTransaction trans = fragmentManager.beginTransaction();
