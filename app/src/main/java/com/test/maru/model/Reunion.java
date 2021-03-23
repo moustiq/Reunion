@@ -5,6 +5,8 @@ public class Reunion {
     private String heure;
     private String lieu;
     private String sujet;
+    // TODO: rename to email
+    // devrait etre une `List<String>`
     private String mails;
 
     public Reunion(String heure, String lieu, String sujet, String mails) {

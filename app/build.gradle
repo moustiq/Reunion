@@ -8,6 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.test.maru"
+        // TODO: minSdkVersion represente la version minimum d'Android que tu supporte
+        // supporter des ancienne version te prive de certaines recente fonctionnalité
+        // la note de cadrage te demande seulement de supporter jusuqu'a 21. Tu peux donc changer
+        // le '16' en '21'
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
