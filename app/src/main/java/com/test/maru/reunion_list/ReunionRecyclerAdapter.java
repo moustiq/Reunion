@@ -2,6 +2,8 @@ package com.test.maru.reunion_list;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.maru.R;
@@ -22,11 +25,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static java.security.AccessController.getContext;
+
 public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecyclerAdapter.ViewHolder> {
 
     private final List<Reunion> mReunions;
     private final LayoutInflater mInflater;
     public ReunionApiService mReunionApiService;
+    private ReunionRecyclerAdapter mReunionRecyclerAdapter;
 
     public ReunionRecyclerAdapter(Context context, List<Reunion> reunions) {
         mReunions = reunions;
@@ -49,11 +55,15 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
             public void onClick(View v) {
 
                 mReunions.remove(position);
-                holder.bind(mReunions.get(position));
+                updateMeeting(holder,position);
 
                 Log.d("DELETE REUNION", "onClick: delete" + position);
             }
         });
+    }
+
+    public void updateMeeting(final ViewHolder holder, int position) {
+
     }
 
     @Override
@@ -72,6 +82,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         public ViewHolder(View itemView) {
             super(itemView);
             //ButterKnife.bind(this,itemView);
+            avatar = itemView.findViewById(R.id.reunion_avatar);
             sujet = itemView.findViewById(R.id.reunion_sujet);
             mail = itemView.findViewById(R.id.reunion_mail);
             avatar = itemView.findViewById(R.id.reunion_avatar);
@@ -79,8 +90,10 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         }
 
         void bind(Reunion r) {
+            avatar.setColorFilter(r.getAvatar(), PorterDuff.Mode.MULTIPLY);
             sujet.setText(r.getSujet() + " - " + r.getHeure() + " - " + r.getLieu());
-            mail.setText(r.getMails());
+            mail.setText(r.getMails().toString());
         }
+
     }
 }

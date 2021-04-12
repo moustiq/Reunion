@@ -16,4 +16,19 @@
         <item>black</item>
 
     </string-array>
+
+    <string-array
+        name="numero_salle">
+        <item>salle 1</item>
+        <item>salle 2</item>
+        <item>salle 3</item>
+        <item>salle 4</item>
+        <item>salle 5</item>
+        <item>salle 6</item>
+        <item>salle 7</item>
+        <item>salle 8</item>
+        <item>salle 9</item>
+        <item>salle 10</item>
+
+    </string-array>
 </resources>

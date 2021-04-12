@@ -50,16 +50,29 @@
             android:layout_column="0">
 
         </EditText>
-        <EditText
-            android:id="@+id/lieu"
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:hint="lieu"
-            android:inputType="text"
-            android:layout_column="0">
+            android:orientation="vertical">
 
-        </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="salles : "
+                android:textSize="18sp"
+                android:padding="12dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_lieu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:padding="22dp">
+            </Spinner>
+
+
+        </GridLayout>
         <EditText
             android:id="@+id/sujet"
             android:layout_width="match_parent"

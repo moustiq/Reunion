@@ -1,19 +1,19 @@
 package com.test.maru.reunion_list;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -21,21 +21,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.maru.R;
-import com.test.maru.api.ReunionApi;
 import com.test.maru.api.ReunionApiService;
 import com.test.maru.di.DI;
 import com.test.maru.model.Reunion;
 
-import butterknife.BindView;
-import butterknife.OnClick;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class AddReunionActivity extends AppCompatActivity {
+public class AddReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private Reunion mReunion = new Reunion();
     private Spinner spinnerAvatar;
+    private String avatarColor;
+    private ImageView avatar;
     private EditText heureEdit;
-    private EditText lieuEdit;
+    private String lieuEdit;
+
+    private Spinner salle;
+
     private EditText sujetEdit;
     private EditText mailEdit;
 
@@ -53,6 +59,8 @@ public class AddReunionActivity extends AppCompatActivity {
 
     private ReunionApiService mReunionApiService;
 
+    private ArrayList<EditText> m = new ArrayList<EditText>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -68,9 +76,10 @@ public class AddReunionActivity extends AppCompatActivity {
         nameToolbar.setText("Add réunion");
         arrowBack.setVisibility(View.VISIBLE);
 
+        avatar = findViewById(R.id.reunion_avatar);
         spinnerAvatar = (Spinner) findViewById(R.id.spinner_color);
         heureEdit = (EditText) findViewById(R.id.heure);
-        lieuEdit = (EditText) findViewById(R.id.lieu);
+        salle = (Spinner) findViewById(R.id.spinner_lieu);
         sujetEdit = (EditText) findViewById(R.id.sujet);
         mailEdit = (EditText) findViewById(R.id.mail);
 
@@ -98,7 +107,17 @@ public class AddReunionActivity extends AppCompatActivity {
             }
         });
 
-        setCreerReunion ();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddReunionActivity.this, R.array.couleur_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAvatar.setAdapter(adapter);
+        spinnerAvatar.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(AddReunionActivity.this, R.array.numero_salle, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        salle.setAdapter(adapter2);
+        salle.setOnItemSelectedListener(this);
+
+        setCreerReunion();
 
         setArrowBack();
 
@@ -106,21 +125,25 @@ public class AddReunionActivity extends AppCompatActivity {
 
     }
 
-    public void setCreerReunion () {
+    private void setCreerReunion () {
 
         creerReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (nbMail == 0) addReunion();
-                else addReunionMail();
-                Toast.makeText(AddReunionActivity.this, "reunion ajouté", LENGTH_SHORT).show();
+                if (nbMail == 0) {
+                    addReunion();
 
+                } else {
+                    addReunionMail();
+                    mReunion.getMails().add(editTextMail.getText().toString());
+                }
+                Toast.makeText(AddReunionActivity.this, "reunion ajouté", LENGTH_SHORT).show();
             }
         });
     }
 
-    public void setArrowBack() {
+    private void setArrowBack() {
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +154,21 @@ public class AddReunionActivity extends AppCompatActivity {
         });
     }
 
-    public void addMail() {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        avatarColor = parent.getItemAtPosition(position).toString();
+        lieuEdit = parent.getItemAtPosition(position).toString();
+
+        Toast.makeText(parent.getContext(),avatarColor, LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    private void addMail() {
 
         addEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,31 +177,51 @@ public class AddReunionActivity extends AppCompatActivity {
                 editTextMail = new EditText(AddReunionActivity.this);
                 editTextMail.setHint("mail");
                 addLayout.addView(editTextMail);
+                m.add(editTextMail);
                 nbMail++;
             }
         });
     }
 
-    public void addReunionMail() {
 
-        Reunion reunionAddMail = new Reunion(
-                heureEdit.getText().toString(),
-                lieuEdit.getText().toString(),
-                sujetEdit.getText().toString(),
-                mailEdit.getText().toString() + " , " + editTextMail.getText().toString()
-        );
-        mReunionApiService.createReunion(reunionAddMail);
+    private void addReunionMail() {
+
+        for (int i = 0; i < m.size(); i++) {
+
+            //avatar.setColorFilter(Color.GREEN,PorterDuff.Mode.MULTIPLY);
+            mReunion.getMails().add(mailEdit.getText().toString() + " , " + m.get(i).getText().toString());
+            mReunion.setHeure(heureEdit.getText().toString());
+            mReunion.setLieu(lieuEdit);
+            mReunion.setSujet(sujetEdit.getText().toString());
+
+        }
+        mReunionApiService.createReunion(mReunion);
+
     }
 
-    public void addReunion() {
+    /*public void addReunion2() {
 
         Reunion reunion = new Reunion(
+                //avatar.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY),
                 heureEdit.getText().toString(),
                 lieuEdit.getText().toString(),
                 sujetEdit.getText().toString(),
-                mailEdit.getText().toString()
+                Collections.singletonList(mailEdit.getText().toString())
         );
         mReunionApiService.createReunion(reunion);
+    }*/
+
+    private void addReunion() {
+
+        //mReunion.getAvatar().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+        mReunion.getMails().add(mailEdit.getText().toString());
+        mReunion.setHeure(heureEdit.getText().toString());
+        mReunion.setLieu(lieuEdit);
+        mReunion.setSujet(sujetEdit.getText().toString());
+
+
+        mReunionApiService.createReunion(mReunion);
     }
+    
 
 }

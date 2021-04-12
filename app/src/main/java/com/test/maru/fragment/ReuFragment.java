@@ -1,6 +1,7 @@
 package com.test.maru.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,19 +13,24 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.test.maru.R;
 import com.test.maru.api.ReunionApiService;
 import com.test.maru.di.DI;
 import com.test.maru.model.Reunion;
 import com.test.maru.reunion_list.AddReunionActivity;
+import com.test.maru.reunion_list.MainActivity;
 import com.test.maru.reunion_list.ReunionRecyclerAdapter;
+import com.test.maru.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ReuFragment extends Fragment {
@@ -34,6 +40,7 @@ public class ReuFragment extends Fragment {
     private List<Reunion> mReunions;
     private RecyclerView mRecyclerView;
     private FloatingActionButton floatingButton;
+
 
     public ReuFragment() {
         // Required empty public constructor
@@ -53,6 +60,7 @@ public class ReuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reu, container, false);
 
         Log.d("HERE", "onCreateView: start create");
+
 
         mRecyclerView = view.findViewById(R.id.reu_recycler);
         floatingButton = view.findViewById(R.id.floating_button);
@@ -85,32 +93,18 @@ public class ReuFragment extends Fragment {
         refresh();
     }
 
-    public void refresh() {
+    private void refresh() {
         mReunions = mReunionApiService.getReunions();
         Log.d("REFRESH", "refresh: am i visible ? " + isVisible());
         // assert
         if (isVisible()) mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
-    }
-
-
-    public void search(String filter) {
-
-        ArrayList<Reunion> listReunion = new ArrayList<>();
-
-        for (Reunion r : mReunions) {
-
-            if(r.getHeure().contains(filter)) {
-                listReunion.add(r);
-                continue;
-            }
-
-            if(r.getLieu().contains(filter)) {
-                listReunion.add(r);
-                continue;
-            }
-
-        }
-        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), listReunion));
 
     }
+
+    public void filter() {
+
+        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), Utils.result ));
+
+    }
+
 }

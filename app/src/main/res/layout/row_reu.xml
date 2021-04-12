@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:paddingHorizontal="15dp"
     android:paddingVertical="7dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/reunion_avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="@string/cd_reunion_avatar" />
+        android:paddingHorizontal="2sp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/cd_reunion_avatar"
+        android:src="@drawable/circle"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:paddingHorizontal="25dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/reunion_sujet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:textStyle="bold"
             android:layout_weight="1"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/reunion_mail"

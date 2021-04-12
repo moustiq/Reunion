@@ -3,6 +3,7 @@ package com.test.maru;
 import com.test.maru.api.ReunionApiService;
 import com.test.maru.di.DI;
 import com.test.maru.model.Reunion;
+import com.test.maru.utils.Utils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import static com.test.maru.api.ReunionList.REUNION;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
@@ -49,6 +51,20 @@ public class ExampleUnitTest {
         assertFalse(mReunionApiService.getReunions().contains(reunion));
     }
 
+    @Test
+    public void filtreReunion() {
 
+        Utils.search("salle 2");
+        Reunion reunion = mReunionApiService.getReunions().get(0);
+        assertEquals(reunion.getLieu(),reunion.getLieu().toString());
+
+    }
+
+    @Test
+    public void ajoutReunion() {
+
+
+
+    }
 
 }
