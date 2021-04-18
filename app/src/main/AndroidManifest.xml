@@ -17,7 +17,7 @@
         <activity android:name=".reunion_list.MainActivity"
             android:label="Reunion"
             android:configChanges="orientation|screenSize">
-            
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

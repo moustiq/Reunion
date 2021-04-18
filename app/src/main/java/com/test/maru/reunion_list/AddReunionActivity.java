@@ -34,8 +34,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class AddReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Reunion mReunion = new Reunion();
-    private Spinner spinnerAvatar;
-    private String avatarColor;
     private ImageView avatar;
     private EditText heureEdit;
     private String lieuEdit;
@@ -77,7 +75,6 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
         arrowBack.setVisibility(View.VISIBLE);
 
         avatar = findViewById(R.id.reunion_avatar);
-        spinnerAvatar = (Spinner) findViewById(R.id.spinner_color);
         heureEdit = (EditText) findViewById(R.id.heure);
         salle = (Spinner) findViewById(R.id.spinner_lieu);
         sujetEdit = (EditText) findViewById(R.id.sujet);
@@ -107,10 +104,6 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
             }
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddReunionActivity.this, R.array.couleur_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAvatar.setAdapter(adapter);
-        spinnerAvatar.setOnItemSelectedListener(this);
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(AddReunionActivity.this, R.array.numero_salle, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -156,10 +149,8 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        avatarColor = parent.getItemAtPosition(position).toString();
         lieuEdit = parent.getItemAtPosition(position).toString();
 
-        Toast.makeText(parent.getContext(),avatarColor, LENGTH_SHORT).show();
     }
 
     @Override

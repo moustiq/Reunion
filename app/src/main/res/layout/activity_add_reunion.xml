@@ -16,30 +16,6 @@
 
         <include layout="@layout/tool_bar" />
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="avatar : "
-                android:textSize="18sp"
-                android:padding="12dp"/>
-
-            <Spinner
-                android:id="@+id/spinner_color"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:padding="22dp">
-            </Spinner>
-
-
-        </GridLayout>
-
         <EditText
             android:id="@+id/heure"
             android:layout_width="match_parent"

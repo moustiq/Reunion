@@ -8,16 +8,6 @@
     <string name="Add_reunion">Add réunion</string>
     <string name="Reunion">Réunion</string>
 
-    <string-array
-        name="couleur_array">
-        <item>red</item>
-        <item>blue</item>
-        <item>yellow</item>
-        <item>green</item>
-        <item>orange</item>
-        <item>black</item>
-
-    </string-array>
 
     <string-array
         name="numero_salle">
