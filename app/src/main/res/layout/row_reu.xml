@@ -13,7 +13,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:contentDescription="@string/cd_reunion_avatar"
-        android:src="@drawable/circle"/>
+        android:src="@drawable/circle"
+        />
 
 
     <LinearLayout
@@ -39,7 +40,11 @@
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+
 
     </LinearLayout>
 

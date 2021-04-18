@@ -21,6 +21,7 @@ import com.test.maru.api.ReunionApiService;
 import com.test.maru.model.Reunion;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,10 +30,11 @@ import static java.security.AccessController.getContext;
 
 public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecyclerAdapter.ViewHolder> {
 
-    private final List<Reunion> mReunions;
+    private List<Reunion> mReunions;
     private final LayoutInflater mInflater;
     public ReunionApiService mReunionApiService;
     private ReunionRecyclerAdapter mReunionRecyclerAdapter;
+    private Random rnd = new Random();
 
     public ReunionRecyclerAdapter(Context context, List<Reunion> reunions) {
         mReunions = reunions;
@@ -55,15 +57,15 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
             public void onClick(View v) {
 
                 mReunions.remove(position);
-                updateMeeting(holder,position);
+                updateMeeting(mReunions);
 
-                Log.d("DELETE REUNION", "onClick: delete" + position);
             }
         });
     }
 
-    public void updateMeeting(final ViewHolder holder, int position) {
-
+    public void updateMeeting(List<Reunion> newListe) {
+        mReunions = newListe;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -77,7 +79,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         public TextView sujet;
         public TextView mail;
         public ImageView deleteIcon;
-
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -90,9 +92,10 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         }
 
         void bind(Reunion r) {
-            avatar.setColorFilter(r.getAvatar(), PorterDuff.Mode.MULTIPLY);
-            sujet.setText(r.getSujet() + " - " + r.getHeure() + " - " + r.getLieu());
-            mail.setText(r.getMails().toString());
+            avatar.setBackgroundColor(color);
+            //avatar.getColorFilter().toString();
+            sujet.setText(String.format("%s - %s - %s", r.getSujet(), r.getHeure(), r.getLieu()));
+            mail.setText(r.getMails().toString().replaceAll("[\\[\\](){}]",""));
         }
 
     }

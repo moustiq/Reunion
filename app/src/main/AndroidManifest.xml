@@ -10,8 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".reunion_list.AddReunionActivity" />
-        <activity android:name=".reunion_list.MainActivity">
+        <activity android:name=".reunion_list.AddReunionActivity"
+            android:label="Add reunion"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity android:name=".reunion_list.MainActivity"
+            android:label="Reunion"
+            android:configChanges="orientation|screenSize">
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

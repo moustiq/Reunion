@@ -5,6 +5,8 @@
     <string name="cd_remove_reunion">remove reunion</string>
     <string name="cd_reunion_avatar">reunion avatar</string>
     <string name="recherche">recherche</string>
+    <string name="Add_reunion">Add réunion</string>
+    <string name="Reunion">Réunion</string>
 
     <string-array
         name="couleur_array">

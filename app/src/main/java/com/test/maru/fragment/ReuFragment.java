@@ -29,6 +29,7 @@ import com.test.maru.reunion_list.ReunionRecyclerAdapter;
 import com.test.maru.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,6 +41,7 @@ public class ReuFragment extends Fragment {
     private List<Reunion> mReunions;
     private RecyclerView mRecyclerView;
     private FloatingActionButton floatingButton;
+    private ReunionRecyclerAdapter adapter;
 
 
     public ReuFragment() {
@@ -51,7 +53,7 @@ public class ReuFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReunionApiService = DI.getReunionApiService();
-        refresh();
+
     }
 
     @Override
@@ -61,13 +63,13 @@ public class ReuFragment extends Fragment {
 
         Log.d("HERE", "onCreateView: start create");
 
-
+        adapter = new ReunionRecyclerAdapter(getContext(), Collections.<Reunion>emptyList());
         mRecyclerView = view.findViewById(R.id.reu_recycler);
         floatingButton = view.findViewById(R.id.floating_button);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()),DividerItemDecoration.VERTICAL));
-        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
-
+        mRecyclerView.setAdapter(adapter);
+        refresh();
         setListner();
 
         Log.d("HERE", "onCreateView: return view");
@@ -97,13 +99,13 @@ public class ReuFragment extends Fragment {
         mReunions = mReunionApiService.getReunions();
         Log.d("REFRESH", "refresh: am i visible ? " + isVisible());
         // assert
-        if (isVisible()) mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), mReunions));
+        adapter.updateMeeting(mReunions);
 
     }
 
     public void filter() {
 
-        mRecyclerView.setAdapter(new ReunionRecyclerAdapter(getContext(), Utils.result ));
+        adapter.updateMeeting(Utils.result);
 
     }
 

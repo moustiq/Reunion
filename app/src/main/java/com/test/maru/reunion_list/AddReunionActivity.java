@@ -73,7 +73,7 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
         nameToolbar = findViewById(R.id.toolbar_name);
         arrowBack = findViewById(R.id.toolbar_back);
 
-        nameToolbar.setText("Add réunion");
+        nameToolbar.setText(R.string.Add_reunion);
         arrowBack.setVisibility(View.VISIBLE);
 
         avatar = findViewById(R.id.reunion_avatar);
@@ -188,8 +188,7 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
 
         for (int i = 0; i < m.size(); i++) {
 
-            //avatar.setColorFilter(Color.GREEN,PorterDuff.Mode.MULTIPLY);
-            mReunion.getMails().add(mailEdit.getText().toString() + " , " + m.get(i).getText().toString());
+            mReunion.getMails().add(String.format("%s - %s", mailEdit.getText().toString() , m.get(i).getText().toString()));
             mReunion.setHeure(heureEdit.getText().toString());
             mReunion.setLieu(lieuEdit);
             mReunion.setSujet(sujetEdit.getText().toString());
@@ -199,26 +198,12 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
 
     }
 
-    /*public void addReunion2() {
-
-        Reunion reunion = new Reunion(
-                //avatar.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY),
-                heureEdit.getText().toString(),
-                lieuEdit.getText().toString(),
-                sujetEdit.getText().toString(),
-                Collections.singletonList(mailEdit.getText().toString())
-        );
-        mReunionApiService.createReunion(reunion);
-    }*/
-
     private void addReunion() {
 
-        //mReunion.getAvatar().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         mReunion.getMails().add(mailEdit.getText().toString());
         mReunion.setHeure(heureEdit.getText().toString());
         mReunion.setLieu(lieuEdit);
         mReunion.setSujet(sujetEdit.getText().toString());
-
 
         mReunionApiService.createReunion(mReunion);
     }

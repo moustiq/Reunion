@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mTextInputLayout = findViewById(R.id.search_layout);
 
 
-        nameToolbar.setText("Réunion");
+        nameToolbar.setText(R.string.Reunion);
 
         fragmentManager = getSupportFragmentManager();
 

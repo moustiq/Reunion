@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.test.maru.api.ReunionList.REUNION;
@@ -17,6 +18,7 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -56,14 +58,16 @@ public class ExampleUnitTest {
 
         Utils.search("salle 2");
         Reunion reunion = mReunionApiService.getReunions().get(0);
-        assertEquals(reunion.getLieu(),reunion.getLieu().toString());
+        assertEquals(reunion.getLieu(),reunion.getLieu());
 
     }
 
     @Test
     public void ajoutReunion() {
 
-
+        Reunion reunion = new Reunion("15:30","salle 5","OC", Arrays.asList("bernard@gmail.com"));
+        mReunionApiService.createReunion(reunion);
+        assertTrue(mReunionApiService.getReunions().contains(reunion));
 
     }
 

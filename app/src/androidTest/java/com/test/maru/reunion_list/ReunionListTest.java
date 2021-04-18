@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
@@ -23,9 +24,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-//import androidx.test.espresso.contrib;
-//import androidx.test.espresso.contrib.RecyclerViewActions;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -60,13 +58,14 @@ public class ReunionListTest {
                 withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))), isDisplayed())).check(matches(withText("OC - 15:20 - Paris")));
     }
 
-    /*@Test
+    @Test
     public void deleteReunion() {
 
-        onView(allOf(withId(R.id.reunion_delete),childAtPosition(childAtPosition(withId(R.id.reu_recycler), 0), 3))).perform(click());
+        //onView(allOf(withId(R.id.reunion_delete),childAtPosition(childAtPosition(withId(R.id.reu_recycler), 0), 3))).perform(click());
         onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT));
         onView(ViewMatchers.withId(R.id.reu_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
-    }*/
+        onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT-1));
+    }
 
     @Test
     public void filtreSalle() {
