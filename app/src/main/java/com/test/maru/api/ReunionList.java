@@ -17,7 +17,8 @@ public class ReunionList {
             new Reunion("15:30", "salle 2", "OC", Arrays.asList("Louis@gmail.com")),
             new Reunion("16:20", "salle 3", "OC", Arrays.asList("julien@gmail.com")),
             new Reunion("17:20", "salle 4", "OC", Arrays.asList("charlie@gmail.com")),
-            new Reunion("18:20", "salle 5", "OC", Arrays.asList("margaux@gmail.com"))
+            new Reunion("18:20", "salle 5", "OC", Arrays.asList("margaux@gmail.com")),
+            new Reunion("18:20", "salle 6", "OC", Arrays.asList("margaux@gmail.com","charlie@gmail.com"))
 
     );
 

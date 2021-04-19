@@ -46,7 +46,7 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public class ReunionListTest {
 
-    private static int ITEMS_COUNT = 5;
+    private static int ITEMS_COUNT = 6;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -58,14 +58,6 @@ public class ReunionListTest {
                 withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))), isDisplayed())).check(matches(withText("OC - 15:20 - Paris")));
     }
 
-    @Test
-    public void deleteReunion() {
-
-        //onView(allOf(withId(R.id.reunion_delete),childAtPosition(childAtPosition(withId(R.id.reu_recycler), 0), 3))).perform(click());
-        onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT));
-        onView(ViewMatchers.withId(R.id.reu_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
-        onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT-1));
-    }
 
     @Test
     public void filtreSalle() {
@@ -90,8 +82,17 @@ public class ReunionListTest {
         onView(withId(R.id.creer)).perform(click());
         onView(withId(R.id.toolbar_back)).perform(click());
         onView(allOf(withId(R.id.reunion_sujet), withText("OC - 12:12 - salle 5"), withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))), isDisplayed())).check(matches(isDisplayed()));
+        ITEMS_COUNT++;
     }
 
+    @Test
+    public void deleteReunion() {
+
+        //onView(allOf(withId(R.id.reunion_delete),childAtPosition(childAtPosition(withId(R.id.reu_recycler), 0), 3))).perform(click());
+        onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT));
+        onView(ViewMatchers.withId(R.id.reu_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+        onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT-1));
+    }
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

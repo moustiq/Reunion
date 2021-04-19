@@ -129,7 +129,6 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
 
                 } else {
                     addReunionMail();
-                    mReunion.getMails().add(editTextMail.getText().toString());
                 }
                 Toast.makeText(AddReunionActivity.this, "reunion ajouté", LENGTH_SHORT).show();
             }
@@ -183,7 +182,6 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
             mReunion.setHeure(heureEdit.getText().toString());
             mReunion.setLieu(lieuEdit);
             mReunion.setSujet(sujetEdit.getText().toString());
-
         }
         mReunionApiService.createReunion(mReunion);
 

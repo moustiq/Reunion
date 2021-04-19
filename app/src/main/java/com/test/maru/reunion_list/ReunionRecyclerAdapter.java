@@ -36,6 +36,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
     private ReunionRecyclerAdapter mReunionRecyclerAdapter;
     private Random rnd = new Random();
 
+
     public ReunionRecyclerAdapter(Context context, List<Reunion> reunions) {
         mReunions = reunions;
         mInflater = LayoutInflater.from(context);
@@ -79,7 +80,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         public TextView sujet;
         public TextView mail;
         public ImageView deleteIcon;
-        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        private int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -93,7 +94,6 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
 
         void bind(Reunion r) {
             avatar.setBackgroundColor(color);
-            //avatar.getColorFilter().toString();
             sujet.setText(String.format("%s - %s - %s", r.getSujet(), r.getHeure(), r.getLieu()));
             mail.setText(r.getMails().toString().replaceAll("[\\[\\](){}]",""));
         }

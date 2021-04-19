@@ -14,8 +14,8 @@
         android:layout_height="30dp"
         android:contentDescription="@string/cd_reunion_avatar"
         android:src="@drawable/circle"
+        android:shape="ring"
         />
-
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,14 +35,14 @@
 
         <TextView
             android:id="@+id/reunion_mail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"
             android:ellipsize="end"
-            android:maxLines="1"/>
+            android:maxLines="2"/>
 
 
 
