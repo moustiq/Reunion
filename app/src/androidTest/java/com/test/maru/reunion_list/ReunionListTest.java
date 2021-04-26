@@ -88,7 +88,6 @@ public class ReunionListTest {
     @Test
     public void deleteReunion() {
 
-        //onView(allOf(withId(R.id.reunion_delete),childAtPosition(childAtPosition(withId(R.id.reu_recycler), 0), 3))).perform(click());
         onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT));
         onView(ViewMatchers.withId(R.id.reu_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         onView(ViewMatchers.withId(R.id.reu_recycler)).check(withItemCount(ITEMS_COUNT-1));

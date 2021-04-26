@@ -3,7 +3,9 @@ package com.test.maru.reunion_list;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.IconCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.test.maru.R;
 import com.test.maru.api.ReunionApiService;
 import com.test.maru.model.Reunion;
@@ -25,15 +29,13 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-import static java.security.AccessController.getContext;
 
 public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecyclerAdapter.ViewHolder> {
 
     private List<Reunion> mReunions;
     private final LayoutInflater mInflater;
-    public ReunionApiService mReunionApiService;
-    private ReunionRecyclerAdapter mReunionRecyclerAdapter;
     private Random rnd = new Random();
 
 
@@ -76,11 +78,12 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView avatar;
+        public CircleImageView avatar;
         public TextView sujet;
         public TextView mail;
         public ImageView deleteIcon;
-        private int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        int randomDrawable =(int) (5 * Math.random())+1;
+        int[] drawable = new int[]{R.drawable.circle, R.drawable.circle2, R.drawable.circle3, R.drawable.circle4, R.drawable.circle5,R.drawable.circle6, R.drawable.circle7,R.drawable.circle8};
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -93,7 +96,7 @@ public class ReunionRecyclerAdapter extends RecyclerView.Adapter<ReunionRecycler
         }
 
         void bind(Reunion r) {
-            avatar.setBackgroundColor(color);
+            avatar.setImageResource(drawable[randomDrawable]);
             sujet.setText(String.format("%s - %s - %s", r.getSujet(), r.getHeure(), r.getLieu()));
             mail.setText(r.getMails().toString().replaceAll("[\\[\\](){}]",""));
         }

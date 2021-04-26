@@ -61,18 +61,14 @@ public class ReuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reu, container, false);
 
-        Log.d("HERE", "onCreateView: start create");
-
         adapter = new ReunionRecyclerAdapter(getContext(), Collections.<Reunion>emptyList());
         mRecyclerView = view.findViewById(R.id.reu_recycler);
         floatingButton = view.findViewById(R.id.floating_button);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()),DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(adapter);
         refresh();
         setListner();
 
-        Log.d("HERE", "onCreateView: return view");
         return view;
     }
 

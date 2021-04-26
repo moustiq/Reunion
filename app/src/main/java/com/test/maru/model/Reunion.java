@@ -13,9 +13,8 @@ public class Reunion {
     private String sujet;
     private List<String> emails;
 
-    public Reunion(String heure, String lieu, String sujet, List<String> emails) {
+    public Reunion( String heure, String lieu, String sujet, List<String> emails) {
 
-        //this.avatar = avatar;
         this.heure = heure;
         this.lieu = lieu;
         this.sujet = sujet;
@@ -27,13 +26,6 @@ public class Reunion {
 
     }
 
-    public int getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
-    }
 
     public String getHeure() {
         return heure;

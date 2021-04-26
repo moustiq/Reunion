@@ -48,7 +48,7 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
     private ImageView arrowBack;
 
     private Button addEmail;
-    private EditText editTextMail;
+    private EditText editTextEmail;
     private Button creerReunion;
 
     private int nbMail = 0;
@@ -163,11 +163,10 @@ public class AddReunionActivity extends AppCompatActivity implements AdapterView
         addEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ADD MAIL", "onClick: add mail");
-                editTextMail = new EditText(AddReunionActivity.this);
-                editTextMail.setHint("mail");
-                addLayout.addView(editTextMail);
-                m.add(editTextMail);
+                editTextEmail = new EditText(AddReunionActivity.this);
+                editTextEmail.setHint("mail");
+                addLayout.addView(editTextEmail);
+                m.add(editTextEmail);
                 nbMail++;
             }
         });
