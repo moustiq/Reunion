@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 @RunWith(JUnit4.class)
-public class ExampleUnitTest {
+public class ReunionUnitTest {
 
     private ReunionApiService mReunionApiService;
 

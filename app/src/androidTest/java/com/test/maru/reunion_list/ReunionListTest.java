@@ -52,22 +52,22 @@ public class ReunionListTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void ReunionExist() {
-
-        onView(Matchers.allOf(ViewMatchers.withId(R.id.reunion_sujet), withText("OC - 15:20 - Paris"),
-                withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))), isDisplayed())).check(matches(withText("OC - 15:20 - Paris")));
-    }
-
-
-    @Test
     public void filtreSalle() {
 
         onView(allOf(withId(R.id.toolbar_recherche))).perform(click());
-        onView(withId(R.id.search_edit)).perform(click()).perform(replaceText("salle 2"), closeSoftKeyboard());
+        onView(withId(R.id.search_edit)).perform(click()).perform(replaceText("salle 1"), closeSoftKeyboard());
         onView(withId(R.id.search_edit)).perform(click());
-        onView(allOf(withId(R.id.reunion_sujet), withText("OC - 15:30 - salle 2"))).check(matches(withText("OC - 15:30 - salle 2")));
+        onView(allOf(withId(R.id.reunion_sujet), withText("OC - 15:20 - salle 1"))).check(matches(withText("OC - 15:20 - salle 1")));
 
     }
+
+    @Test
+    public void ReunionExist() {
+
+        onView(Matchers.allOf(ViewMatchers.withId(R.id.reunion_sujet), withText("OC - 15:20 - salle 1"),
+                withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))), isDisplayed())).check(matches(withText("OC - 15:20 - salle 1")));
+    }
+
 
 
     @Test
