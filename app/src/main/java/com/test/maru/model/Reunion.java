@@ -1,19 +1,17 @@
 package com.test.maru.model;
 
-import android.widget.ImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Reunion {
 
-    private int avatar;
+
+    private final List<String> emails;
     private String heure;
     private String lieu;
     private String sujet;
-    private List<String> emails;
 
-    public Reunion( String heure, String lieu, String sujet, List<String> emails) {
+    public Reunion(String heure, String lieu, String sujet, List<String> emails) {
 
         this.heure = heure;
         this.lieu = lieu;
@@ -22,7 +20,7 @@ public class Reunion {
     }
 
     public Reunion() {
-        this.emails = new ArrayList<String>();
+        this.emails = new ArrayList<>();
 
     }
 
@@ -54,10 +52,6 @@ public class Reunion {
 
     public List<String> getMails() {
         return emails;
-    }
-
-    public void setMails(List<String> mails) {
-        this.emails = mails;
     }
 
 

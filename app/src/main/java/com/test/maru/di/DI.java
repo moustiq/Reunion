@@ -5,7 +5,11 @@ import com.test.maru.api.ReunionApiService;
 
 public class DI {
 
-    private  static ReunionApiService service = new ReunionApi();
+    private static final ReunionApiService service;
+
+    static {
+        service = new ReunionApi();
+    }
 
 
     public static ReunionApiService getReunionApiService() {

@@ -1,6 +1,5 @@
 package com.test.maru.api;
 
-import android.graphics.Color;
 
 import com.test.maru.model.Reunion;
 
@@ -13,12 +12,12 @@ public class ReunionList {
 
     public static List<Reunion> REUNION = Arrays.asList(
 
-            new Reunion("15:20", "salle 1", "OC", Arrays.asList("corentin@gmail.com")),
-            new Reunion("15:30", "salle 2", "OC", Arrays.asList("Louis@gmail.com")),
-            new Reunion("16:20", "salle 3", "OC", Arrays.asList("julien@gmail.com")),
-            new Reunion("17:20", "salle 4", "OC", Arrays.asList("charlie@gmail.com")),
-            new Reunion("18:20", "salle 5", "OC", Arrays.asList("margaux@gmail.com")),
-            new Reunion("18:20", "salle 6", "OC", Arrays.asList("margaux@gmail.com","charlie@gmail.com"))
+            new Reunion("15:20", "salle 1", "OC", Collections.singletonList("corentin@gmail.com")),
+            new Reunion("15:30", "salle 2", "OC", Collections.singletonList("Louis@gmail.com")),
+            new Reunion("16:20", "salle 3", "OC", Collections.singletonList("julien@gmail.com")),
+            new Reunion("17:20", "salle 4", "OC", Collections.singletonList("charlie@gmail.com")),
+            new Reunion("18:20", "salle 5", "OC", Collections.singletonList("margaux@gmail.com")),
+            new Reunion("18:20", "salle 6", "OC", Arrays.asList("margaux@gmail.com", "charlie@gmail.com"))
 
     );
 

@@ -11,22 +11,21 @@ public class Utils {
 
     public static List<Reunion> result = new ArrayList<>();
 
-    public static void search( String filter) {
+    public static void search(String filter) {
 
-        ReunionApiService mReunionApiService = DI.getReunionApiService();;
+        ReunionApiService mReunionApiService = DI.getReunionApiService();
         List<Reunion> mReunions = mReunionApiService.getReunions();
         ArrayList<Reunion> listReunion = new ArrayList<>();
 
         for (Reunion r : mReunions) {
 
-            if(r.getHeure().contains(filter)) {
+            if (r.getHeure().contains(filter)) {
                 listReunion.add(r);
                 continue;
             }
 
-            if(r.getLieu().contains(filter)) {
+            if (r.getLieu().contains(filter)) {
                 listReunion.add(r);
-                continue;
             }
         }
         result = listReunion;

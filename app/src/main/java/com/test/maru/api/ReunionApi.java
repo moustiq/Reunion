@@ -4,9 +4,15 @@ import com.test.maru.model.Reunion;
 
 import java.util.List;
 
-public class ReunionApi implements  ReunionApiService{
+import static com.test.maru.api.ReunionList.generateReunion;
 
-    private List<Reunion> mReunions = ReunionList.generateReunion();
+public class ReunionApi implements ReunionApiService {
+
+    private final List<Reunion> mReunions;
+
+    public ReunionApi() {
+        mReunions = generateReunion();
+    }
 
     public List<Reunion> getReunions() {
         return mReunions;
